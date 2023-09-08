@@ -1,0 +1,5 @@
+# docker container ls
+	=> list my containers 
+# docker container run --detach --publish 80:80 --name n1 nginx
+	=> run container server in port 80 in the backround with the name n1
+#
