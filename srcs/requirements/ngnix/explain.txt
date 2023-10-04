@@ -1,0 +1,29 @@
+Master Process
+- Startup / Shutdown
+- Maintenance 
+- Read / Rvaluate Configruation 
+- Maintain Worker Processes
+
+Worker Process
+- Process rquests / Serve connections
+- Defaults 512 maximum number of connections
+
+Multitude of Use Cases 
+- Web server
+- Reverse Proxy 
+- Load Balancer 
+- Cache 
+- Web Appication Firewall 
+- Internal DDOS Protection 
+- API Gateway 
+- K8s IC 
+- Sidecar Proxy
+
+Basics Commands 
+- nginx -T 
+    => See the configuration of nginx
+- nginx -t  
+    => Test the configuration of nginx before reload it
+- nginx -s
+    => send signal to nginx master process (ex: nginx -s reload - stop ...)
+ 

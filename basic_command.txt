@@ -43,3 +43,5 @@
 	=> open port 3000 on host and 3000 on the container
 # image:<tage>
 	=> give the image a tag
+# ps -C nginx -f
+	=> see all proces for nginx (should install procs)
