@@ -45,3 +45,7 @@
 	=> give the image a tag
 # ps -C nginx -f
 	=> see all proces for nginx (should install procs)
+
+-- linux command --
+# sudo systemctl list-units -t (-t = type)
+	=> To list our daemon in out system

@@ -16,3 +16,4 @@ RUN cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR
 
 RUN	chown -R root:root /var/www/wordpress
 
+    
