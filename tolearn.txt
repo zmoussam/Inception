@@ -1,1 +1,2 @@
-- Revers Proxy
+- Revers Proxy => done
+- dns server for the domain name
