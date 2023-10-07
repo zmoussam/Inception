@@ -1,28 +1,26 @@
-services:
-    nginx:
-        ports:
-            - 443:443
-        build:
-            context: ./requirements/nginx
-            dockerfile: Dockerfile
-        container_name: nginx
-        restart: always
-        network:
-            - Network
-    mysql:
-        dockerfile: ./requirements/mysql/Dockerfile
-        container_name: mysql
-        restart: always
-        network:
-            - Network
-    wordpress:
-        dockerfile: ./requirements/wordpress/Dockerfile
-        working_dir: /var/www/html
-        #volumes:
-            #- ./wordpress:/var/www/html
-        container_name: wordpress
-        restart: always
-        network:
-            - Network
-volume:
-    db-wordpress
+# services:
+#     nginx:
+#         ports:
+#             - 443:443
+#         build:
+#             context: ./requirements/nginx
+#             dockerfile: Dockerfile
+#         container_name: nginx
+#         restart: always
+#     mysql:
+#         dockerfile: ./requirements/mysql/Dockerfile
+#         container_name: mysql
+#         restart: always
+#         network:
+#             - Network
+#     wordpress:
+#         dockerfile: ./requirements/wordpress/Dockerfile
+#         working_dir: /var/www/html
+#         #volumes:
+#             #- ./wordpress:/var/www/html
+#         container_name: wordpress
+#         restart: always
+#         network:
+#             - Network
+# volume:
+#     db-wordpress
