@@ -9,8 +9,45 @@ services:
             dockerfile: Dockerfile
         container_name: nginx
         restart: always
+        volumes:
+            - wordpress:/var/www/html
+    
     mariadb:
-  
+        ports:
+            - 3306:3306
+        build:
+            context: ./requirements/mariadb
+            dockerfile: Dockerfile
+        container_name: mariadb
+        restart: always
+        volumes:
+            - db-wordpress:/var/lib/mysql
+        env_file:
+            - filename: .env
+        depends_on:
+            - serviceName: nginx
+        
+    wordpress:
+        ports:
+            - 9000:9000
+        build:
+            context: ./requirements/wordpress
+            dockerfile: Dockerfile
+        container_name: wordpress
+        restart: always
+        volumes:
+            - ./wordpress:/var/www/html
+        env_file:
+            - filename: .env
+        depends_on:
+            - serviceName: mariadb
+            - serviceName: nginx
+        
 volumes:
     db-wordpress:
+        driver: local
+        name: $(DATABASE_VOLUME)
+        
     wordpress:
+        driver: local
+        name: $(WORDPRESS_VOLUME)

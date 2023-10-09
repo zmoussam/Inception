@@ -1,8 +1,8 @@
 FROM debian:buster
 
-RUN apt update -y
+RUN apt-get update -y
 
-RUN apt upgrade -y
+RUN apt-get upgrade -y
 
 RUN mkdir -p /var/run/nginx
 
