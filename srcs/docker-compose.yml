@@ -1,4 +1,4 @@
-version: '3'
+version: "3.8"
 
 services:
     nginx:
@@ -9,8 +9,10 @@ services:
             dockerfile: Dockerfile
         container_name: nginx
         restart: always
+        env_file:
+            - .env
         volumes:
-            - wordpress:/var/www/html
+           - wordpress:/var/www/html
     
     mariadb:
         ports:
@@ -23,31 +25,36 @@ services:
         volumes:
             - db-wordpress:/var/lib/mysql
         env_file:
-            - filename: .env
+            - .env
         depends_on:
-            - serviceName: nginx
+            - nginx
         
-    wordpress:
-        ports:
-            - 9000:9000
-        build:
-            context: ./requirements/wordpress
-            dockerfile: Dockerfile
-        container_name: wordpress
-        restart: always
-        volumes:
-            - ./wordpress:/var/www/html
-        env_file:
-            - filename: .env
-        depends_on:
-            - serviceName: mariadb
-            - serviceName: nginx
+    # wordpress:
+    #     ports:
+    #         - 9000:9000
+    #     build:
+    #         context: ./requirements/wordpress
+    #         dockerfile: Dockerfile
+    #     container_name: wordpress
+    #     restart: always
+    #     volumes:
+    #         wordpress: /var/www/html
+    #     env_file:
+    #         - filename: .env
+    #     depends_on:
+    #         - serviceName: mariadb
+    #         - serviceName: nginx
         
 volumes:
     db-wordpress:
         driver: local
-        name: $(DATABASE_VOLUME)
-        
+        driver_opts:
+            type: none
+            o: bind
+            device: ~/Desktop/inc-data/database
     wordpress:
         driver: local
-        name: $(WORDPRESS_VOLUME)
+        driver_opts: 
+            type: none
+            o: bind 
+            device: ~/Desktop/inc-data/wordpress

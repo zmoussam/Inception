@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 RUN apt-get update -y
 
@@ -6,12 +6,11 @@ RUN apt-get upgrade -y
 
 RUN mkdir -p /var/run/nginx
 
-RUN apt install -y nginx
+RUN apt-get install -y nginx
 
 RUN mkdir -p /etc/nginx/ssl
 
-RUN apt install openssl -y 
-
+RUN apt-get install openssl -y && apt-get clean
 RUN openssl req -x509 -nodes \
     -out /etc/nginx/ssl/inception.crt \
     -keyout /etc/nginx/ssl/inception.key \
@@ -19,7 +18,7 @@ RUN openssl req -x509 -nodes \
 
 RUN chmod 755 /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html 
 
 RUN mkdir -p /etc/nginx/conf.d
 
