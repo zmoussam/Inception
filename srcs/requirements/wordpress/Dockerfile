@@ -1,19 +1,22 @@
-FROM debian:buster
+FROM debian:bullseye
 
 RUN apt update 
 
 RUN apt upgrade -y
 
-RUN apt-get install wget -y
+RUN apt-get install -y php php-curl php-mysql php-fpm curl 
 
-RUN apt-get install -y php7.3 php-mysql php-fpm mariadb-client 
+RUN mkdir -p /run/php
 
-RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
+RUN mkdir -p /var/www/html
 
-RUN cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR.tar.gz
+RUN chown -R www-data:www-data /var/www/html
 
+RUN chmod -R 755 /var/www/html
 
+COPY ./tools/wp-install.sh /wp-install.sh
 
-RUN	chown -R root:root /var/www/wordpress
+RUN chmod +x /wp-install.sh
 
-    
+ENTRYPOINT ["/wp-install.sh", "php-fpm", "-F"]
+

@@ -16,7 +16,7 @@
 	=> get infos about what happen in the image
 # docker info
 	=> see info about the docker
-# docker inscpect --format='{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container id> || <container name>
+# docker inscpect --format='{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container id> or <container name>
 	=> get the container ip
 # docker container stop <container name>
 	=> stop container 

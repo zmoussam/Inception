@@ -13,6 +13,8 @@ services:
             - .env
         volumes:
            - wordpress:/var/www/html
+        networks:
+            - inception-network
     
     mariadb:
         ports:
@@ -28,22 +30,26 @@ services:
             - .env
         depends_on:
             - nginx
+        networks:
+            - inception-network
         
-    # wordpress:
-    #     ports:
-    #         - 9000:9000
-    #     build:
-    #         context: ./requirements/wordpress
-    #         dockerfile: Dockerfile
-    #     container_name: wordpress
-    #     restart: always
-    #     volumes:
-    #         wordpress: /var/www/html
-    #     env_file:
-    #         - filename: .env
-    #     depends_on:
-    #         - serviceName: mariadb
-    #         - serviceName: nginx
+    wordpress:
+        ports:
+            - 9000:9000
+        build:
+            context: ./requirements/wordpress
+            dockerfile: Dockerfile
+        container_name: wordpress
+        restart: always
+        volumes:
+            - wordpress:/var/www/html
+        env_file:
+            - .env
+        depends_on:
+            - mariadb
+            - nginx
+        networks:
+            - inception-network
         
 volumes:
     mariadb-data:
@@ -52,11 +58,15 @@ volumes:
         driver_opts:
             type: none
             o: bind
-            device: /home/zakaria/Desktop/inc-data/database
+            device: /Users/zmoussam/data/database
     wordpress:
         name: wordpress
         driver: local
         driver_opts: 
             type: none
             o: bind 
-            device: /home/zakaria/Desktop/inc-data/wordpress
+            device: /Users/zmoussam/data/wordpress
+networks:
+    inception-network:
+        name: inception-network
+        driver: bridge

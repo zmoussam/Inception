@@ -20,4 +20,4 @@ RUN chmod +x /create_user_db.sh
 
 EXPOSE 3306
 
-ENTRYPOINT ["/create_user_db.sh", "mysqld_safe"]
+ENTRYPOINT ["/create_user_db.sh"]

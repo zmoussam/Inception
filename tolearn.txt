@@ -1,3 +1,0 @@
-- Revers Proxy => done
-- dns server for the domain name
-- wp cli : https://www.youtube.com/watch?v=nBpeDRHr3Xs&list=PLT9miexWCpPV7EfmKOp2JWyR7GqRHSHtc
