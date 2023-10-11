@@ -1,14 +1,17 @@
 #!/bin/bash
 
-service mysql start
 
-mysql -u root -p"$MYSQL_ROOT_PASSWORD" <<EOF
-CREATE DATABASE IF NOT EXISTS $DB_NAME;
-CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';
-GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';
-FLUSH PRIVILEGES;
-EOF
+service mariadbd start;
 
-mysqladmin -u root -p$SQL_ROOT_PASSWORD shutdown
+if [ ! -d "/var/lib/mysql/$SQL_DATABASE" ]
+then
+	mysql -u root -e "DROP DATABASE IF EXISTS test;"
+	mysql -u root -e "CREATE DATABASE IF NOT EXISTS $SQL_DATABASE;" 
+    mysql -u root -e "GRANT ALL ON $SQL_DATABASE.* TO '$SQL_USER'@'%' IDENTIFIED BY '$SQL_USER_PASSWORD';"
+	mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
+	mysql -u root -e "FLUSH PRIVILEGES;"
+fi
+
+mysqladmin shutdown
 
 exec $@

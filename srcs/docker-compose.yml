@@ -23,7 +23,7 @@ services:
         container_name: mariadb
         restart: always
         volumes:
-            - db-wordpress:/var/lib/mysql
+            - mariadb-data:/var/lib/mysql
         env_file:
             - .env
         depends_on:
@@ -46,15 +46,17 @@ services:
     #         - serviceName: nginx
         
 volumes:
-    db-wordpress:
+    mariadb-data:
+        name: mariadb-data
         driver: local
         driver_opts:
             type: none
             o: bind
-            device: ~/Desktop/inc-data/database
+            device: /home/zakaria/Desktop/inc-data/database
     wordpress:
+        name: wordpress
         driver: local
         driver_opts: 
             type: none
             o: bind 
-            device: ~/Desktop/inc-data/wordpress
+            device: /home/zakaria/Desktop/inc-data/wordpress
