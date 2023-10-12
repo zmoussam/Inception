@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-mysqld_safe;
+service mysql start;
 
 if [ ! -d "/var/lib/mysql/$SQL_DATABASE" ]
 then

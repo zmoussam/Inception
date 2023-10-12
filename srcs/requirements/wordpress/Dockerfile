@@ -18,5 +18,5 @@ COPY ./tools/wp-install.sh /wp-install.sh
 
 RUN chmod +x /wp-install.sh
 
-ENTRYPOINT ["/wp-install.sh", "php-fpm", "-F"]
+ENTRYPOINT ["/wp-install.sh", "php-fpm7.4", "-F"]
 
