@@ -19,20 +19,25 @@ services:
             - wordpress
     
     mariadb:
-        ports:
-            - 3306:3306
         build:
             context: ./requirements/mariadb
             dockerfile: Dockerfile
         container_name: mariadb
         restart: always
-        volumes:
-            - mariadb-data:/var/lib/mysql
         env_file:
             - .env
+        expose:
+            - 3306
+        volumes:
+            - mariadb-data:/var/lib/mysql
         networks:
             - inception-network
-        
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "--silent"]
+            start_period: 5s
+            timeout: 10s
+            retries: 3
+
     wordpress:
         ports:
             - 9000:9000

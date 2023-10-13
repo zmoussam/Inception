@@ -1,24 +1,18 @@
 #!/bin/bash
 
-# curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
-
-# chmod +x wp-cli.phar;
-
-# mv wp-cli.phar /usr/local/bin/wp;
-
 cd /var/www/html/;
 
-# wp core download --allow-root;
-
-touch /var/www/html/wp-config.php;
 curl -O https://wordpress.org/latest.tar.gz > /dev/null;
 
 tar -xvf latest.tar.gz;
 
 rm latest.tar.gz;
+
 mv wordpress/* .;
+
 rm -rf wordpress;
 
+touch /var/www/html/wp-config.php;
 
 cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php;
 
