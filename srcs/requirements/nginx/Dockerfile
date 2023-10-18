@@ -1,12 +1,7 @@
 FROM debian:bullseye
 
-RUN apt-get update -y
-
-RUN apt-get upgrade -y
-
-RUN mkdir -p /var/run/nginx
-
-RUN apt-get install -y nginx
+RUN apt-get update -y && apt-get upgrade -y \
+    && apt-get install -y nginx
 
 RUN mkdir -p /etc/nginx/ssl
 
@@ -27,4 +22,4 @@ COPY ./conf/default.conf   /etc/nginx/sites-available/default
 EXPOSE 443
 
 # run the master process nginx
-CMD [ "nginx", "-g", "daemon off;" ] 
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ] 

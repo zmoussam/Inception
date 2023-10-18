@@ -51,7 +51,8 @@ services:
         env_file:
             - .env
         depends_on:
-            - mariadb
+            mariadb:
+                condition: service_healthy
         networks:
             - inception-network
         
@@ -62,14 +63,14 @@ volumes:
         driver_opts:
             type: none
             o: bind
-            device: /Users/zmoussam/data/database
+            device: /home/zmoussam/data/database
     wordpress:
         name: wordpress
         driver: local
         driver_opts: 
             type: none
             o: bind 
-            device: /Users/zmoussam/data/wordpress
+            device: /home/zmoussam/data/wordpress
 networks:
     inception-network:
         name: inception-network

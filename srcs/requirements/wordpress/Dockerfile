@@ -1,10 +1,7 @@
 FROM debian:bullseye
 
-RUN apt update 
-
-RUN apt upgrade -y
-
-RUN apt-get install -y php php-curl php-mysql php-fpm curl 
+RUN apt update && apt upgrade -y \
+    && apt-get install -y php php-curl php-mysql php7.4-fpm curl 
 
 RUN mkdir -p /run/php
 
