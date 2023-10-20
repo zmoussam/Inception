@@ -6,15 +6,19 @@
 #    By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 13:00:54 by zmoussam          #+#    #+#              #
-#    Updated: 2023/10/20 13:00:55 by zmoussam         ###   ########.fr        #
+#    Updated: 2023/10/20 17:01:53 by zmoussam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 FROM debian:buster
 
-RUN apt update -y && apt-get upgrade -y &&  apt install -y mariadb-server
+RUN apt update -y && apt-get upgrade -y &&  apt install -y mariadb-server mariadb-client
 
+RUN mkdir -p /var/run/mysqld \
+   && chown -R mysql:mysql /var/run/mysqld \
+   && chmod 777 /var/run/mysqld
+   
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 COPY  ./tools/create-db.sh .

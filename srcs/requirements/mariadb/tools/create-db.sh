@@ -6,19 +6,20 @@
 #    By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 13:00:51 by zmoussam          #+#    #+#              #
-#    Updated: 2023/10/20 13:00:52 by zmoussam         ###   ########.fr        #
+#    Updated: 2023/10/20 17:10:09 by zmoussam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!bin/bash
+
 service mysql start;
 # sleep 5;
 
 if [ ! -d "/var/lib/mysql/${SQL_DATABASE}" ]
 then
-    echo "Creating database: ${SQL_DATABASE}"
 
     mysql -u root -e "DROP DATABASE IF EXISTS test;"
+    echo "Creating database: ${SQL_DATABASE}"
     
     mysql -e "CREATE DATABASE IF NOT EXISTS \`${SQL_DATABASE}\`;"
 
@@ -26,10 +27,8 @@ then
 
     mysql -e "GRANT ALL PRIVILEGES ON \`${SQL_DATABASE}\`.* TO \`${SQL_USER}\`@'%' IDENTIFIED BY '${SQL_USER_PASSWORD}';"
 
-    mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
-
     mysql -e "FLUSH PRIVILEGES;"
 
 fi
-mysqladmin -u root -p${MYSQL_ROOT_PASSWORD} shutdown
+service mysql stop;
 exec mysqld_safe
