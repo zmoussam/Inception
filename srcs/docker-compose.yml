@@ -7,6 +7,7 @@ services:
         build:
             context: ./requirements/nginx
             dockerfile: Dockerfile
+        image: nginx:inception
         container_name: nginx
         restart: always
         env_file:
@@ -23,36 +24,28 @@ services:
             context: ./requirements/mariadb
             dockerfile: Dockerfile
         container_name: mariadb
+        image: mariadb:inception
         restart: always
         env_file:
             - .env
-        expose:
-            - 3306
         volumes:
             - mariadb-data:/var/lib/mysql
         networks:
             - inception-network
-        healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "--silent"]
-            start_period: 5s
-            timeout: 10s
-            retries: 3
 
     wordpress:
-        ports:
-            - 9000:9000
         build:
             context: ./requirements/wordpress
             dockerfile: Dockerfile
         container_name: wordpress
+        image: wordpress:inception
         restart: always
         volumes:
             - wordpress:/var/www/html
         env_file:
             - .env
         depends_on:
-            mariadb:
-                condition: service_healthy
+            - mariadb
         networks:
             - inception-network
         

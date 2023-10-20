@@ -1,11 +1,23 @@
 #!/bin/bash
 
+## change directory to /var/www/html where we will install wordpress
+# where the volume is mounted
 cd /var/www/html/;
 
+## download wordpress source code
+# source code will be downloaded to /var/www/html/wordpress folder
+# > dev/null to hide the output of curl command (progress bar)
+# -O to write output to a file 
 curl -O https://wordpress.org/latest.tar.gz > /dev/null;
 
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar  
+## download wp-cli to manage wordpress from command line 
+# source code will be downloaded to /var/www/html/wp-cli.phar
+# -O to write output to a file
+# > dev/null to hide the output of curl command, it a good practice
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > /dev/null;
 
+## make wp-cli.phar executable
+# 
 chmod +x wp-cli.phar
 
 mv wp-cli.phar /usr/local/bin/wp
