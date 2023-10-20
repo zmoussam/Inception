@@ -2,21 +2,20 @@ version: "3.8"
 
 services:
     nginx:
-        ports:
-            - 443:443
+        ports: 
+            - "443:443"
         build:
             context: ./requirements/nginx
             dockerfile: Dockerfile
         image: nginx:inception
         container_name: nginx
         restart: always
-        env_file:
-            - .env
-        volumes:
-           - wordpress:/var/www/html
-        networks:
+        env_file: .env
+        volumes: 
+            - wordpress:/var/www/html
+        networks: 
             - inception-network
-        depends_on:
+        depends_on: 
             - wordpress
     
     mariadb:
@@ -26,11 +25,10 @@ services:
         container_name: mariadb
         image: mariadb:inception
         restart: always
-        env_file:
-            - .env
-        volumes:
-            - mariadb-data:/var/lib/mysql
-        networks:
+        env_file: .env
+        volumes: 
+            - mariadb:/var/lib/mysql
+        networks: 
             - inception-network
 
     wordpress:
@@ -40,30 +38,29 @@ services:
         container_name: wordpress
         image: wordpress:inception
         restart: always
-        volumes:
+        volumes: 
             - wordpress:/var/www/html
-        env_file:
-            - .env
-        depends_on:
+        env_file: .env
+        depends_on: 
             - mariadb
-        networks:
+        networks: 
             - inception-network
         
 volumes:
-    mariadb-data:
+    mariadb:
         name: mariadb-data
         driver: local
         driver_opts:
-            type: none
-            o: bind
-            device: /home/zmoussam/data/database
+          type: none
+          o: bind
+          device: /home/zmoussam/data/database
     wordpress:
         name: wordpress
         driver: local
         driver_opts: 
-            type: none
-            o: bind 
-            device: /home/zmoussam/data/wordpress
+          type: none
+          o: bind 
+          device: /home/zmoussam/data/wordpress
 networks:
     inception-network:
         name: inception-network

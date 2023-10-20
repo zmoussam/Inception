@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/20 13:01:58 by zmoussam          #+#    #+#              #
+#    Updated: 2023/10/20 15:51:16 by zmoussam         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # dockerfile for wordpress installation 
 
 # base image 
@@ -5,7 +17,7 @@ FROM debian:bullseye
 
 # maintainer
 RUN apt update && apt upgrade -y \
-    && apt-get install -y php7.4 php7.4-curl php7.4-mysql php7.4-fpm curl 
+    && apt install -y php7.4 php7.4-curl php7.4-mysql php7.4-fpm curl 
 
 RUN mkdir -p /run/php
 

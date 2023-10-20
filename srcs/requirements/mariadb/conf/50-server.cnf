@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    50-server.cnf                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/20 13:00:46 by zmoussam          #+#    #+#              #
+#    Updated: 2023/10/20 13:00:49 by zmoussam         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #
 # These groups are read by MariaDB server.
 # Use it for options that only the server (but not clients) should see
