@@ -19,17 +19,16 @@ all:
 	@mkdir -p /home/zmoussam/data
 	@mkdir -p /home/zmoussam/data/wordpress
 	@mkdir -p /home/zmoussam/data/database
-	@docker-compose -f ./srcs/docker-compose.yml up  --build
+	@docker-compose -f ./srcs/docker-compose.yml up -d --build > /dev/null
 	@echo "${GREEN}Building done, you can now access the services !${NC}"
 
 clean:
 	@echo "${GREEN}Cleaning... \nPlease wait a few seconds !${NC}"
-	@docker-compose -f ./srcs/docker-compose.yml down
+	@docker-compose -f ./srcs/docker-compose.yml down > /dev/null
 	@echo "${GREEN}Cleaning done !${NC}"
-
 fclean: clean
 	@echo "${GREEN}Cleaning and removing all volumes... \nPlease wait a few seconds !${NC}"
-	@docker-compose -f ./srcs/docker-compose.yml down --rmi all --volumes
+	@docker-compose -f ./srcs/docker-compose.yml down --rmi all --volumes > /dev/null
 	@sudo rm -rf /home/zmoussam/data/wordpress/*
 	@sudo rm -rf /home/zmoussam/data/database/*
 	@echo "${GREEN}Cleaning and removing all volumes done !${NC}"

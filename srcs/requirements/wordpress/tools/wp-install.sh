@@ -19,7 +19,7 @@ cd /var/www/html/;
 ## download wordpress source code
 # source code will be downloaded to /var/www/html/wordpress folder
 # > dev/null to hide the output of curl command (progress bar)
-# -O to write output to a file 
+# -O to write output to a file
 if [ ! -f "/var/www/html/wp-config.php" ];
 then
     echo "Downloading wordpress source code";

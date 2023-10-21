@@ -13,11 +13,11 @@
 
 FROM debian:buster
 
-RUN apt update -y && apt-get upgrade -y &&  apt install -y mariadb-server mariadb-client
+RUN apt update -y && apt-get upgrade -y &&  apt install -y mariadb-server
 
 RUN mkdir -p /var/run/mysqld \
-   && chown -R mysql:mysql /var/run/mysqld \
-   && chmod 777 /var/run/mysqld
+   && chown -R mysql:mysql /run/mysqld \
+   && chmod 777 /run/mysqld
    
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
