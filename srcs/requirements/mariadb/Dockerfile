@@ -18,7 +18,7 @@ RUN apt update -y && apt-get upgrade -y &&  apt install -y mariadb-server
 RUN mkdir -p /var/run/mysqld \
    && chown -R mysql:mysql /run/mysqld \
    && chmod 777 /run/mysqld
-   
+
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 COPY  ./tools/create-db.sh .
