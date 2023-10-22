@@ -2,6 +2,8 @@
 
 A Small Infrastructure with Docker Compose
 
+<img width="1246" alt="Screen Shot 2023-10-22 at 12 13 47 PM" src="https://github.com/zmoussam/Inception/assets/90983110/58d1dfdc-a82f-4846-a87c-b9cb450a2d23">
+
 ## Description
 
 This project sets up a small infrastructure composed of different services, each running in a dedicated Docker container. It includes NGINX with TLSv1.2 or TLSv1.3, WordPress with php-fpm, and MariaDB. The setup also involves volumes for the WordPress database and website files, along with a docker-network for inter-container communication.
