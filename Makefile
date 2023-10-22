@@ -23,11 +23,6 @@ all:
 	@echo "$(GREEN)Building done, you can now access the services !$(NC)"
 
 clean:
-	@echo "$(GREEN)Cleaning... \nPlease wait a few seconds !$(NC)"
-	@docker-compose -f ./srcs/docker-compose.yml down > /dev/null
-	@echo "$(GREEN)Cleaning done !$(NC)"
-
-fclean:
 	@echo "$(GREEN)Cleaning and removing all volumes... \nPlease wait a few seconds !$(NC)"
 	@docker-compose -f ./srcs/docker-compose.yml down --rmi all --volumes > /dev/null
 	@sudo rm -rf /home/zmoussam/data

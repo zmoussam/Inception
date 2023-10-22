@@ -7,8 +7,8 @@ services:
         build:
             context: ./requirements/nginx
             dockerfile: Dockerfile
-        image: nginx:inception
         container_name: nginx
+        image: nginx:inception
         restart: always
         env_file: .env
         volumes: 
