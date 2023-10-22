@@ -91,4 +91,45 @@ docker build -t image_name
 docker run -d --name container_name image_name
 ```
 - To stop a Docker container:
+```
 docker stop container_name
+```
+- To remove a Docker container:
+```
+docker rm container_name
+```
+- To build and start Docker services using Docker Compose:
+```
+docker-compose up -d
+```
+
+- To stop Docker services using Docker Compose:
+```
+docker-compose down
+```
+- To access the MariaDB container:
+```
+docker exec -it mariadb_container_name mysql -u username -p
+```
+- To access the WordPress container:
+```
+docker exec -it wordpress_container_name bash
+```
+- To reload NGINX configuration:
+```
+nginx -s reload
+```
+- To test NGINX configuration:
+```
+nginx -t
+```
+- To view NGINX logs:
+```
+tail -f /var/log/nginx/error.log
+```
+### Accessing the Infrastructure
+
+Once the setup is complete, you can access the infrastructure through the domain name specified in the project requirements.
+
+
+
